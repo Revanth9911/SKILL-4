@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    =========================================================
+      TASK 4a – XML Bean Configuration
+      Course Code : 24SDCS02 | FSAD Workbook – Skill 4
+    =========================================================
+    -->
+
+    <!-- ── 1. Constructor Injection ─────────────────────────────────────── -->
+    <!--
+        All four fields are supplied via <constructor-arg> in declaration order.
+        Spring matches them by index (or type) and calls the 4-arg constructor.
+    -->
+    <bean id="studentConstructor" class="com.fsad.studentdi.Student">
+        <constructor-arg index="0" value="1001"              />  <!-- studentId -->
+        <constructor-arg index="1" value="Arjun Sharma"      />  <!-- name      -->
+        <constructor-arg index="2" value="B.Tech CSE"        />  <!-- course    -->
+        <constructor-arg index="3" value="2"                 />  <!-- year      -->
+    </bean>
+
+    <!-- ── 2. Setter Injection ───────────────────────────────────────────── -->
+    <!--
+        studentId and name are still injected via constructor (required fields).
+        course and year are overridden / provided through setter injection.
+    -->
+    <bean id="studentSetter" class="com.fsad.studentdi.Student">
+        <!-- constructor args for required fields -->
+        <constructor-arg index="0" value="1002"         />
+        <constructor-arg index="1" value="Priya Nair"   />
+        <constructor-arg index="2" value="DEFAULT"      />  <!-- overridden by setter -->
+        <constructor-arg index="3" value="0"            />  <!-- overridden by setter -->
+
+        <!-- setter injection for course and year -->
+        <property name="course" value="M.Tech AI&amp;DS" />
+        <property name="year"   value="1"                />
+    </bean>
+
+</beans>

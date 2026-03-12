@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ====================================================
+         Bean 1: Constructor Injection
+         All four fields are provided via <constructor-arg>
+    ===================================================== -->
+    <bean id="studentConstructor" class="com.fsad.student.Student">
+        <constructor-arg name="studentId" value="101" />
+        <constructor-arg name="name"      value="Alice Johnson" />
+        <constructor-arg name="course"    value="B.Tech CSE" />
+        <constructor-arg name="year"      value="2" />
+    </bean>
+
+    <!-- ====================================================
+         Bean 2: Setter Injection (overrides course & year)
+         Constructor still sets initial values;
+         setters override course and year afterwards.
+    ===================================================== -->
+    <bean id="studentSetter" class="com.fsad.student.Student">
+        <constructor-arg name="studentId" value="102" />
+        <constructor-arg name="name"      value="Bob Smith" />
+        <constructor-arg name="course"    value="Initial Course" />
+        <constructor-arg name="year"      value="1" />
+        <!-- Setter Injection -->
+        <property name="course" value="M.Tech AI&amp;DS" />
+        <property name="year"   value="3" />
+    </bean>
+
+</beans>
